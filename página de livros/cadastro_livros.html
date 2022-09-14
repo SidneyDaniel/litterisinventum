@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cadastro_livros.css">
+    <title>Administração</title>
+</head>
+<body>
+    <header>
+        <h1>LITTERIS IN VENTUM</h1> <h2>Administração</h2>
+    </header>
+    
+    <form id="register">
+        <label for="bookName">Insira o nome do livro: </label>
+        <input type="text" name="bookName" id="bookName">
+
+        <label for="bookAuthor">Insira o autor do livro: </label>
+        <input type="text" name="bookAuthor" id="bookAuthor">
+
+        <label for="bookPublisher">Insira a editora do livro: </label>
+        <input type="text" name="bookPublisher" id="bookPublisher">
+
+        <label for="numberOfPages">Quantidade de página: </label>
+        <input type="text" name="numberOfPages" id="numberOfPages">
+
+        <label for="capa">Link da capa: </label>
+        <input type="text" name="capa" >
+
+        <input id="subir" type="submit">
+    </form>
+
+    
+
+    <section id="todosOslivros">
+        <div class="list">
+            
+        </div>
+    </section>
+
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script type="module" src="cadastro_livros.js"></script>
+
+</body>
+</html>
