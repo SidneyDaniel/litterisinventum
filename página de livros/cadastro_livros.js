@@ -35,12 +35,14 @@ form.addEventListener('submit',(e)=>{
     let bookAuthor = document.querySelector('[name=bookAuthor]').value;
     let bookPublisher = document.querySelector('[name=bookPublisher]').value;
     let numberOfPages = document.querySelector('[name=numberOfPages]').value;
+    let readLink = document.querySelector('[name=readLink]').value;
     let capa = document.querySelector('[name=capa]').value;
     db.collection('tarefas').add({
         bookName: bookName,
         bookAuthor: bookAuthor,
         bookPublisher: bookPublisher,
         numberOfPages: numberOfPages,
+        readLink: readLink,
         capa: capa
     })
     console.log(e);
@@ -54,18 +56,18 @@ form.addEventListener('submit',(e)=>{
 db.collection('tarefas').onSnapshot(function(data){
     let list = document.querySelector(".list");
     list.innerHTML = '';
-    data.docs.map(function(val){
+    data.docs.map(function(val,doc){
+        console.log(doc.id)
         list.innerHTML+=`
-        <div id="listaDeLivros">
+        <div id="${val.data(doc).id}" class="listaDeLivros">
         <p id="nomeLivro">${val.data().bookName}</p>
         <img src="${val.data().capa}"/>
         <p>Autor:${val.data().bookAuthor}</p>
         <p>Editora:${val.data().bookPublisher}</p>
         <p>Págs: ${val.data().numberOfPages}</p>
-        <button id="read">Ler</button>
-        <button id="remove">Remover</button>
+        <a class="btn" id="read" href="${val.data().readLink}">Ler</a>
         </div>
         `;
         
-    })
+    }) 
 })

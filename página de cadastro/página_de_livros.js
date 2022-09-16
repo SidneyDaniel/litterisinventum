@@ -19,33 +19,23 @@ const firebaseConfig = {
 
 
 
-
-
-
-//adicionar itens ao banco de dados//
-
 const db = firebase.firestore();
-/*
-const form = document.querySelector('form');
 
-form.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    let tarefa = document.querySelector('[name=tarefa]').value;
-    db.collection('tarefas').add({
-        tarefa: tarefa
-        
-    })
-    console.log(e);
-    alert("inserido com sucesso");
-    form.reset();
-    
-})
-*/
-// mostrar na tela os itens do banco de dados//
 db.collection('tarefas').onSnapshot(function(data){
     let list = document.querySelector(".list");
     list.innerHTML = '';
-    data.docs.map(function(val){
-        list.innerHTML+=`${val.data().tarefa}<br>`;
-    })
+    data.docs.map(function(val,doc){
+        console.log(doc.id)
+        list.innerHTML+=`
+        <div id="${val.data(doc).id}" class="listaDeLivros">
+        <p id="nomeLivro">${val.data().bookName}</p>
+        <img src="${val.data().capa}"/>
+        <p>Autor:${val.data().bookAuthor}</p>
+        <p>Editora:${val.data().bookPublisher}</p>
+        <p>Págs: ${val.data().numberOfPages}</p>
+        <a class="btn" id="read" href="${val.data().readLink}">Ler</a>
+        </div>
+        `;
+        
+    }) 
 })
